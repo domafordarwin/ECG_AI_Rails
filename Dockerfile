@@ -77,6 +77,5 @@ COPY --chown=rails:rails --from=build /rails /rails
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start server for Railway deployment (PORT is provided by Railway)
-# Railway will override this CMD with railway.json startCommand
 EXPOSE 3000
-CMD ["sh", "-c", "./bin/rails server -b 0.0.0.0 -p ${PORT:-3000}"]
+CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
