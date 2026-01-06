@@ -14,7 +14,7 @@
   </div>
 </header>
 
-<main class="flex-grow w-full max-w-[1600px] mx-auto px-6 py-8">
+<main class="flex-grow w-full max-w-[1600px] mx-auto px-6 py-8" data-controller="upload">
   <h1 class="text-2xl font-bold text-gray-900 mb-6">Analysis Report (Summary)</h1>
   
   <section class="bg-white rounded-lg shadow-sm border border-gray-100 p-6 mb-6">
@@ -37,7 +37,7 @@
         <div class="w-10 h-10 rounded-full flex items-center justify-center bg-green-100"><svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg></div>
       </div>
       <div class="space-y-1">
-        <p class="text-sm text-gray-900 font-medium">Value: <span class="font-bold" id="hr-value">72 bpm</span></p>
+        <p class="text-sm text-gray-900 font-medium">Value: <span class="font-bold" id="hr-value">-- bpm</span></p>
         <p class="text-xs text-gray-500">Normal Range: 60-100 bpm</p>
         <div class="pt-2 flex items-center text-sm text-gray-700">
           Status: <span class="ml-2 flex items-center text-emerald-500 font-medium"><span class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>Normal</span>
@@ -51,7 +51,7 @@
         <div class="w-10 h-10 rounded-full flex items-center justify-center bg-green-100"><svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 12h2l2 6 4-12 4 8H20" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
       </div>
       <div class="space-y-1">
-        <p class="text-sm text-gray-900 font-medium">Value: <span class="font-bold">98 ms</span></p>
+        <p class="text-sm text-gray-900 font-medium">Value: <span class="font-bold" id="qrs-value">-- ms</span></p>
         <p class="text-xs text-gray-500">Normal Range: 60-100 ms</p>
         <div class="pt-2 flex items-center text-sm text-gray-700">
           Status: <span class="ml-2 flex items-center text-emerald-500 font-medium"><span class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>Normal</span>
@@ -65,7 +65,7 @@
         <div class="w-10 h-10 rounded-full flex items-center justify-center bg-green-100"><svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
       </div>
       <div class="space-y-1">
-        <p class="text-sm text-gray-900 font-medium">Value: <span class="font-bold">145 ms</span></p>
+        <p class="text-sm text-gray-900 font-medium">Value: <span class="font-bold" id="pq-value">-- ms</span></p>
         <p class="text-xs text-gray-500">Normal Range: 120-200 ms</p>
         <div class="pt-2 flex items-center text-sm text-gray-700">
           Status: <span class="ml-2 flex items-center text-emerald-500 font-medium"><span class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>Normal</span>
@@ -79,7 +79,7 @@
         <div class="w-10 h-10 rounded-full flex items-center justify-center bg-green-100"><svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
       </div>
       <div class="space-y-1">
-        <p class="text-sm text-gray-900 font-medium">Value: <span class="font-bold">450 ms</span></p>
+        <p class="text-sm text-gray-900 font-medium">Value: <span class="font-bold" id="qt-value">-- ms</span></p>
         <p class="text-xs text-gray-500">Normal Range: 350-460 ms</p>
         <div class="pt-2 flex items-center text-sm text-gray-700">
           Status: <span class="ml-2 flex items-center text-emerald-500 font-medium"><span class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>Normal</span>
@@ -104,14 +104,14 @@
   </section>
 
   <div class="flex flex-col sm:flex-row justify-end items-center gap-4 border-t border-gray-200 pt-8 mt-auto">
-    <button class="w-full sm:w-auto py-2 px-6 text-sm font-medium rounded border border-blue-600 text-blue-700 hover:bg-blue-50 transition-colors flex items-center justify-center gap-2">
+    <button data-action="click->upload#downloadPDF" class="w-full sm:w-auto py-2 px-6 text-sm font-medium rounded border border-blue-600 text-blue-700 hover:bg-blue-50 transition-colors flex items-center justify-center gap-2">
       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"></path></svg>
       Download PDF Report
     </button>
     <a href="/detailed" class="flex items-center gap-2 px-8 py-2.5 rounded bg-blue-700 text-white hover:bg-blue-800 transition-colors text-sm font-medium shadow-sm w-full sm:w-auto justify-center">
       View Detailed Analysis
     </a>
-    <button class="flex items-center gap-2 px-8 py-2.5 rounded bg-emerald-700 text-white hover:bg-emerald-800 transition-colors text-sm font-medium shadow-sm w-full sm:w-auto justify-center">
+    <button data-action="click->upload#submitToTeacher" class="flex items-center gap-2 px-8 py-2.5 rounded bg-emerald-700 text-white hover:bg-emerald-800 transition-colors text-sm font-medium shadow-sm w-full sm:w-auto justify-center">
       Submit to Teacher
     </button>
   </div>

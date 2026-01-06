@@ -69,11 +69,11 @@
     </div>
   </section>
 
-  <section class="py-16 bg-white">
+  <section class="py-16 bg-white" data-controller="upload">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h2 class="text-2xl font-bold text-gray-900 mb-6">Getting Started</h2>
       <div class="flex justify-center">
-        <button class="group flex items-center gap-3 px-6 py-3 border-2 border-brand-blue text-brand-blue font-semibold rounded-lg hover:bg-brand-blue hover:text-white transition-all duration-200">
+        <button data-action="click->upload#downloadCSV" class="group flex items-center gap-3 px-6 py-3 border-2 border-brand-blue text-brand-blue font-semibold rounded-lg hover:bg-brand-blue hover:text-white transition-all duration-200">
           <svg class="w-5 h-5 text-gray-400 group-hover:text-white" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
           Download Sample File
         </button>

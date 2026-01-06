@@ -19,15 +19,19 @@
   </div>
 </header>
 
-<main class="pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-[1600px] mx-auto bg-gray-100 min-h-screen">
+<main class="pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-[1600px] mx-auto bg-gray-100 min-h-screen" data-controller="upload">
   <div class="mb-6 flex justify-between items-end">
     <div>
       <h1 class="text-2xl font-bold text-gray-900">Detailed Analysis Screen</h1>
       <p class="text-sm text-gray-500 mt-1">Patient ID: #83920-A • Recording Date: <%= Time.current.strftime("%b %d, %Y") %></p>
     </div>
+    <div class="flex gap-2">
+       <button data-action="click->upload#downloadPDF" class="px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50 transition-colors">Export PDF</button>
+       <button data-action="click->upload#downloadCSV" class="px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50 transition-colors">Export CSV</button>
+    </div>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6" data-controller="upload">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
     <!-- Left Column: Waveform -->
     <section class="lg:col-span-8 flex flex-col gap-6">
       <article class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
@@ -35,9 +39,9 @@
           <h2 class="text-lg font-semibold text-gray-800">Waveform Viewer</h2>
           <div class="flex items-center gap-4 mt-2 sm:mt-0">
             <div class="flex bg-white rounded-md shadow-sm border border-gray-200">
-              <button class="p-2 hover:bg-gray-50 border-r border-gray-200 text-gray-600" title="Zoom In"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
-              <button class="p-2 hover:bg-gray-50 border-r border-gray-200 text-gray-600" title="Zoom Out"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
-              <button class="p-2 bg-blue-100 text-blue-800 border border-blue-200 font-medium text-xs px-3">Select Section</button>
+              <button data-action="click->upload#zoomIn" class="p-2 hover:bg-gray-50 border-r border-gray-200 text-gray-600" title="Zoom In"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
+              <button data-action="click->upload#zoomOut" class="p-2 hover:bg-gray-50 border-r border-gray-200 text-gray-600" title="Zoom Out"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
+              <button class="p-2 bg-blue-100 text-blue-800 border border-blue-200 font-medium text-xs px-3">Scan View</button>
             </div>
             <div class="hidden xl:flex items-center gap-3 text-[10px] font-bold text-gray-600 border-l pl-4 border-gray-200 ml-2">
               <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-green-500"></span> P-start</div>
@@ -49,6 +53,10 @@
           </div>
         </div>
         <div class="p-6">
+           <div class="flex items-center justify-between mb-2">
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Master Navigation</span>
+            <span class="text-xs font-black text-blue-700 px-2 py-0.5" data-upload-target="sliderLabel">0.000s ~ 5.000s</span>
+          </div>
           <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden relative bg-slate-50 h-[300px]">
              <canvas id="ecgChart"></canvas>
           </div>
@@ -81,12 +89,12 @@
           <div class="grid grid-cols-2 gap-4">
             <div class="rounded-lg p-3 border border-blue-100 bg-blue-50">
               <div class="text-xs font-bold text-gray-500 uppercase">PQ Interval</div>
-              <div class="text-lg font-black text-gray-800">120ms</div>
+              <div class="text-lg font-black text-gray-800" data-type="pq-interval">120ms</div>
               <div class="text-[10px] text-green-600 font-bold uppercase">● Normal</div>
             </div>
             <div class="rounded-lg p-3 border border-blue-100 bg-blue-50">
               <div class="text-xs font-bold text-gray-500 uppercase">QT Interval</div>
-              <div class="text-lg font-black text-gray-800">380ms</div>
+              <div class="text-lg font-black text-gray-800" data-type="qt-interval">380ms</div>
               <div class="text-[10px] text-green-600 font-bold uppercase">● Normal</div>
             </div>
           </div>
@@ -113,15 +121,7 @@
             </li>
           </ul>
           <div class="border-t border-gray-100 pt-4">
-            <h3 class="text-sm font-bold text-gray-800 mb-2 flex items-center gap-2">
-              <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-              Re-measure Tips
-            </h3>
-            <ul class="list-disc list-inside text-xs text-gray-500 space-y-1">
-              <li>Check electrode adhesion</li>
-              <li>Minimize patient movement</li>
-              <li>Ensure proper grounding</li>
-            </ul>
+            <button data-action="click->upload#submitToTeacher" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold transition-all shadow-md active:scale-95">Send Analysis to Teacher</button>
           </div>
         </div>
       </article>
