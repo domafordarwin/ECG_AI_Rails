@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ECG EduAnalytics - Data Upload Screen</title>
+<!-- Load Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Load Phosphor Icons for generic icons (used where custom SVGs aren't provided) -->
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<!-- Google Fonts: Inter -->
+<style data-purpose="typography">
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6; /* Gray-100 */
+        }
+    </style>
+<style data-purpose="custom-overrides">/* Custom tweaks for exact visual matching */
+.form-input-custom {
+    border-color: #D1D5DB;
+    /* Gray-300 */
+    border-radius: 0.375rem;
+    /* Rounded-md */
+    }
+.form-input-custom:focus {
+    border-color: #2563EB;
+    /* Blue-600 */
+    ring: 2px solid #93C5FD
+    }
+/* Dashed upload area */
+.upload-area {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%23CBD5E1FF' stroke-width='2' stroke-dasharray='8%2c8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e")
+    }</style>
+</head>
+<body class="min-h-screen flex flex-col text-slate-800">
+<!-- BEGIN: Header -->
+<header class="bg-[#2563EB] text-white shadow-sm shrink-0">
+<div class="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
+<!-- Left: Logo Area -->
+<div class="flex items-center space-x-3">
+<svg class="h-8 w-auto text-white" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+<span class="text-xl font-bold tracking-tight">ECG EduAnalytics</span>
+</div>
+<!-- Center: Navigation -->
+<nav class="hidden md:flex items-center h-full space-x-8 text-sm font-medium">
+<a class="h-full flex items-center opacity-80 hover:opacity-100 transition-opacity px-1 border-b-2 border-transparent hover:border-white/50" href="#">Dashboard</a>
+<a class="h-full flex items-center px-1 border-b-2 border-white font-semibold" href="#">Upload</a>
+<a class="h-full flex items-center opacity-80 hover:opacity-100 transition-opacity px-1 border-b-2 border-transparent hover:border-white/50" href="#">Analysis</a>
+<a class="h-full flex items-center opacity-80 hover:opacity-100 transition-opacity px-1 border-b-2 border-transparent hover:border-white/50" href="#">Feedback</a>
+</nav>
+<!-- Right: User Profile -->
+<div class="flex items-center space-x-4">
+<div class="flex items-center space-x-2">
+<div class="h-8 w-8 rounded-full bg-blue-400 flex items-center justify-center text-white"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+<span class="text-sm font-medium">Dr. Lee</span>
+</div>
+<button class="bg-white text-[#2563EB] px-4 py-1.5 rounded text-sm font-semibold hover:bg-slate-100 transition-colors shadow-sm">
+                    Logout
+                </button>
+</div>
+</div>
+</header>
+<!-- END: Header -->
+<!-- BEGIN: Main Content -->
+<main class="flex-grow p-6 md:p-8 max-w-[1440px] mx-auto w-full">
+<!-- Page Title -->
+<h1 class="text-3xl font-bold text-slate-900 mb-6">Data Upload Screen</h1>
+<!-- BEGIN: Cards Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+<!-- BEGIN: Card 1 - Student Information & Conditions -->
+<section class="bg-white rounded-xl shadow-sm p-6 border border-slate-200 h-full flex flex-col">
+<h2 class="text-lg font-bold text-slate-900 mb-5">1. Student Information &amp; Conditions</h2>
+<form class="space-y-6 flex-grow">
+<!-- Student Information Group -->
+<div>
+<h3 class="text-sm font-bold text-slate-900 mb-3">Student Information</h3>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5">Nickname</label>
+<input class="w-full form-input form-input-custom text-sm py-2 px-3 placeholder:text-slate-400" placeholder="e.g., BioStudent123" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5">Student ID</label>
+<input class="w-full form-input form-input-custom text-sm py-2 px-3 placeholder:text-slate-400" placeholder="e.g., 2024001" type="text"/>
+</div>
+</div>
+</div>
+<hr class="border-slate-100"/>
+<!-- Measurement Conditions Group -->
+<div>
+<h3 class="text-sm font-bold text-slate-900 mb-3">Measurement Conditions</h3>
+<div class="grid grid-cols-2 gap-4 mb-4">
+<!-- Measurement Time -->
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5">Measurement Time</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<input class="w-full form-input form-input-custom text-sm py-2 pl-9 px-3 placeholder:text-slate-400" placeholder="YYYY-MM-DD HH:MM" type="text"/>
+</div>
+</div>
+<!-- Posture Dropdown -->
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5">Posture</label>
+<select class="w-full form-select form-input-custom text-sm py-2 px-3 text-slate-700 bg-slate-50 border-slate-200">
+<option>Sitting</option>
+<option>Supine</option>
+<option>Standing</option>
+</select>
+</div>
+</div>
+<!-- Electrode Position -->
+<div class="mb-4">
+<label class="block text-xs font-medium text-slate-600 mb-1.5">Electrode Position</label>
+<select class="w-full form-select form-input-custom text-sm py-2 px-3 text-slate-700 bg-slate-50 border-slate-200">
+<option>Lead I</option>
+<option>Lead II</option>
+<option>Lead III</option>
+</select>
+</div>
+<!-- Noise Check -->
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5">Noise Check</label>
+<label class="inline-flex items-center">
+<input class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" type="checkbox"/>
+<span class="ml-2 text-sm text-slate-600">Low Noise Environment</span>
+</label>
+</div>
+</div>
+<!-- Age/Gender Group -->
+<div>
+<h3 class="text-sm font-bold text-slate-900 mb-3">Age/Gender</h3>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5">Age</label>
+<input class="w-full form-input form-input-custom text-sm py-2 px-3 placeholder:text-slate-400" placeholder="Age" type="number"/>
+</div>
+<div>
+<label class="block text-xs font-medium text-slate-600 mb-1.5">Gender</label>
+<select class="w-full form-select form-input-custom text-sm py-2 px-3 text-slate-700">
+<option>Male/Female/Other</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+</div>
+</div>
+</div>
+</form>
+</section>
+<!-- END: Card 1 -->
+<!-- BEGIN: Card 2 - Data Upload -->
+<section class="bg-white rounded-xl shadow-sm p-6 border border-slate-200 h-full flex flex-col">
+<h2 class="text-lg font-bold text-slate-900 mb-5">2. Data Upload (CSV/XLSX)</h2>
+<!-- Upload Area -->
+<div class="upload-area bg-slate-50 rounded-lg flex flex-col items-center justify-center p-10 mb-6 cursor-pointer hover:bg-slate-100 transition-colors flex-grow min-h-[220px]">
+<div class="mb-4">
+<!-- Using a generic cloud icon if placeholder not available for specific icon, but following instruction to use placeholder first -->
+<svg class="w-16 h-16 text-slate-300" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</div>
+<p class="text-sm font-semibold text-slate-700 mb-2">Drag and drop your ECG file here</p>
+<p class="text-xs text-slate-500 text-center">Supported formats: CSV, XLS, XLSX. (Single lead only)</p>
+</div>
+<!-- File Listing -->
+<div class="bg-green-50 border border-green-100 rounded-lg p-3 flex items-center justify-between mb-2">
+<div class="flex items-center space-x-3 overflow-hidden">
+<svg class="w-6 h-6 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<div class="min-w-0">
+<p class="text-sm font-medium text-slate-900 truncate">ecg_data_student123.csv</p>
+<p class="text-xs text-green-600 font-medium truncate">Validated (Single lead, 5MB)</p>
+</div>
+</div>
+<svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>
+</div>
+<p class="text-xs text-slate-500 mt-2">Note: Automatic validation for single lead format.</p>
+</section>
+<!-- END: Card 2 -->
+<!-- BEGIN: Card 3 - Preview & Analysis -->
+<section class="bg-white rounded-xl shadow-sm p-6 border border-slate-200 h-full flex flex-col">
+<h2 class="text-lg font-bold text-slate-900 mb-1">3. Preview &amp; Analysis</h2>
+<h3 class="text-sm font-semibold text-slate-900 mb-3">3-second Waveform Preview</h3>
+<!-- Waveform Preview -->
+<div class="border border-slate-200 rounded-lg p-1 mb-6 relative bg-white">
+<img alt="Waveform Preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIkD6CnKELvW-nnKC2y6IZX38g-dUYY4T8pHpCSG4AJKrdw9MCkQJJlxZE47Dt17GsAzOJUMQQxqMyyzLAFju5FYdvYAxAzi36MhB7N5wfrXNNLwpD2UrR6-vNaKgP7trNJf2v-IWswB9tofX7Oo_3mgqPhme4T2XENP1y5Yp0BwsKQEPrm0boP7tBdXWCffaXJGo8m2CAl6NkM2gjMesE6KNv7ftIiC4k6Dk1mgfMPR8z6bWxqhVqga_YSMWhK6JqBvzU8oWCvqwS" style="width: 100%; height: 160px; object-fit: cover; object-position: center; border: 1px solid #e5e7eb;"/>
+</div>
+<!-- Sampling Rate -->
+<div class="mb-6">
+<label class="block text-sm font-medium text-slate-900 mb-1.5">Sampling Rate (Hz)</label>
+<input class="w-full form-input form-input-custom text-sm py-2 px-3 text-slate-900" type="text" value="500"/>
+<p class="text-xs text-slate-500 mt-1">Auto-estimated from file. Adjust if necessary.</p>
+</div>
+<!-- Actions -->
+<div class="mt-auto space-y-3">
+<button class="w-full bg-[#2563EB] hover:bg-blue-700 text-white font-medium py-2.5 rounded-lg flex items-center justify-center space-x-2 transition-colors">
+<i class="ph-bold ph-check text-lg"></i>
+<span>Quality Check</span>
+</button>
+<button class="w-full bg-slate-300 text-white font-medium py-2.5 rounded-lg cursor-not-allowed flex items-center justify-center space-x-2 hover:bg-slate-400 transition-colors">
+<span>Execute Analysis</span>
+</button>
+</div>
+</section>
+<!-- END: Card 3 -->
+</div>
+<!-- END: Cards Grid -->
+</main>
+<!-- END: Main Content -->
+</body></html>

@@ -23,5 +23,8 @@ module RailsApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.x.processing = ActiveSupport::OrderedOptions.new
+    config.x.processing.use_python_bridge = ENV.fetch("USE_PYTHON_BRIDGE", "false").casecmp?("true")
   end
 end

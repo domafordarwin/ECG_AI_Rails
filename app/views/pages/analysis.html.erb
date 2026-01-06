@@ -1,0 +1,118 @@
+<% content_for :title, "ECG Analysis Platform - Summary Report" %>
+
+<header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+  <div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='/'">
+      <svg class="h-8 w-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.0002 2.99976C12.3802 2.99976 12.7202 3.19976 12.9202 3.51976L15.3402 7.41976L16.5002 4.49976C16.6602 4.10976 17.0202 3.84976 17.4402 3.83976C17.8502 3.82976 18.2302 4.05976 18.4202 4.42976L21.8402 11.2698C22.0302 11.6498 22.0002 12.0998 21.7602 12.4498C21.5202 12.7998 21.1202 12.9998 20.7002 12.9998H16.1402L13.7202 9.09976L12.5502 12.0198C12.3902 12.4098 12.0302 12.6698 11.6102 12.6798C11.6002 12.6798 11.5902 12.6798 11.5802 12.6798C11.1702 12.6698 10.7902 12.4398 10.6002 12.0698L7.17017 5.22976C6.98017 4.84976 7.01017 4.39976 7.25017 4.04976C7.49017 3.69976 7.89017 3.49976 8.31017 3.49976H12.0002V2.99976ZM3.00017 11.4998C2.17017 11.4998 1.50017 12.1698 1.50017 12.9998C1.50017 13.8298 2.17017 14.4998 3.00017 14.4998H10.1402L12.5502 18.4198C12.7402 18.7298 13.0802 18.9198 13.4402 18.9198C13.4502 18.9198 13.4602 18.9198 13.4702 18.9198C13.8402 18.8998 14.1802 18.6798 14.3602 18.3398L17.7902 11.4998H20.7002C21.5302 11.4998 22.2002 10.8298 22.2002 9.99976C22.2002 9.16976 21.5302 8.49976 20.7002 8.49976H18.9402L17.4502 5.51976H20.7002C21.1202 5.51976 21.5202 5.31976 21.7602 4.96976C22.0002 4.61976 22.0302 4.16976 21.8402 3.78976L18.4202 6.94976C18.2302 6.57976 17.8502 6.34976 17.4402 6.35976C17.0202 6.36976 16.6602 6.62976 16.5002 7.01976L15.3402 9.93976L12.9202 6.03976C12.7202 5.71976 12.3802 5.51976 12.0002 5.51976H8.31017C7.48017 5.51976 6.81017 6.18976 6.81017 7.01976C6.81017 7.84976 7.48017 8.51976 8.31017 8.51976H10.0702L11.5502 11.4998H3.00017Z"></path></svg>
+      <span class="text-lg font-bold text-gray-900 tracking-tight">ECG Analysis Platform</span>
+    </div>
+    <div class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 py-1 px-2 rounded-lg transition-colors">
+      <img alt="Dr. Sarah" class="w-10 h-10 rounded-full object-cover border border-gray-200" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"/>
+      <span class="text-sm font-medium text-gray-700 hidden sm:block">Student Account</span>
+      <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+    </div>
+  </div>
+</header>
+
+<main class="flex-grow w-full max-w-[1600px] mx-auto px-6 py-8">
+  <h1 class="text-2xl font-bold text-gray-900 mb-6">Analysis Report (Summary)</h1>
+  
+  <section class="bg-white rounded-lg shadow-sm border border-gray-100 p-6 mb-6">
+    <h2 class="text-lg font-bold text-gray-900 mb-3">One-line Judgment</h2>
+    <div class="flex items-start md:items-center gap-2 text-base text-gray-800">
+      <p class="leading-relaxed">
+        <span class="font-medium">Signal Quality:</span> Normal / 
+        <span class="font-medium">Key Indicators:</span> Within Normal Range / 
+        <span class="font-medium">Further Check:</span> No significant abnormalities detected at this time.
+      </p>
+      <svg class="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414-1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+    </div>
+  </section>
+
+  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+    <!-- Card 1: HR -->
+    <article class="bg-white rounded-lg shadow-sm border border-gray-100 p-5 relative">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="font-bold text-gray-900">HR (Heart Rate)</h3>
+        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-green-100"><svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg></div>
+      </div>
+      <div class="space-y-1">
+        <p class="text-sm text-gray-900 font-medium">Value: <span class="font-bold" id="hr-value">72 bpm</span></p>
+        <p class="text-xs text-gray-500">Normal Range: 60-100 bpm</p>
+        <div class="pt-2 flex items-center text-sm text-gray-700">
+          Status: <span class="ml-2 flex items-center text-emerald-500 font-medium"><span class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>Normal</span>
+        </div>
+      </div>
+    </article>
+    <!-- Card 2: QRS -->
+    <article class="bg-white rounded-lg shadow-sm border border-gray-100 p-5">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="font-bold text-gray-900">QRS Duration</h3>
+        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-green-100"><svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 12h2l2 6 4-12 4 8H20" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+      </div>
+      <div class="space-y-1">
+        <p class="text-sm text-gray-900 font-medium">Value: <span class="font-bold">98 ms</span></p>
+        <p class="text-xs text-gray-500">Normal Range: 60-100 ms</p>
+        <div class="pt-2 flex items-center text-sm text-gray-700">
+          Status: <span class="ml-2 flex items-center text-emerald-500 font-medium"><span class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>Normal</span>
+        </div>
+      </div>
+    </article>
+    <!-- Card 3: PQ -->
+    <article class="bg-white rounded-lg shadow-sm border border-gray-100 p-5">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="font-bold text-gray-900">PQ Interval</h3>
+        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-green-100"><svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+      </div>
+      <div class="space-y-1">
+        <p class="text-sm text-gray-900 font-medium">Value: <span class="font-bold">145 ms</span></p>
+        <p class="text-xs text-gray-500">Normal Range: 120-200 ms</p>
+        <div class="pt-2 flex items-center text-sm text-gray-700">
+          Status: <span class="ml-2 flex items-center text-emerald-500 font-medium"><span class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>Normal</span>
+        </div>
+      </div>
+    </article>
+    <!-- Card 4: QT -->
+    <article class="bg-white rounded-lg shadow-sm border border-gray-100 p-5">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="font-bold text-gray-900">QT Interval</h3>
+        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-green-100"><svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+      </div>
+      <div class="space-y-1">
+        <p class="text-sm text-gray-900 font-medium">Value: <span class="font-bold">450 ms</span></p>
+        <p class="text-xs text-gray-500">Normal Range: 350-460 ms</p>
+        <div class="pt-2 flex items-center text-sm text-gray-700">
+          Status: <span class="ml-2 flex items-center text-emerald-500 font-medium"><span class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>Normal</span>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <h2 class="text-lg font-bold text-gray-900 mb-4">Diagnostic Category Results</h2>
+  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+    <% ["Rhythm", "Electrical Axis", "Conduction Disorder", "ST Segment", "T Wave", "Atrial Fibrillation", "Ventricular Hypertrophy", "Myocardial Infarction"].each do |label| %>
+      <article class="bg-white rounded-lg shadow-sm border border-gray-100 p-5 flex flex-col justify-between min-h-[140px]">
+        <div>
+          <h3 class="font-semibold text-gray-900 text-sm mb-1"><%= label %>: Normal</h3>
+          <p class="text-xs text-gray-500 mb-4">Confidence: 99%</p>
+        </div>
+        <button class="w-full py-1.5 px-4 text-sm font-medium rounded border border-blue-600 text-blue-700 hover:bg-blue-50 transition-colors" onclick="window.location.href='/detailed'">
+          View Evidence
+        </button>
+      </article>
+    <% end %>
+  </section>
+
+  <div class="flex flex-col sm:flex-row justify-end items-center gap-4 border-t border-gray-200 pt-8 mt-auto">
+    <button class="w-full sm:w-auto py-2 px-6 text-sm font-medium rounded border border-blue-600 text-blue-700 hover:bg-blue-50 transition-colors flex items-center justify-center gap-2">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"></path></svg>
+      Download PDF Report
+    </button>
+    <a href="/detailed" class="flex items-center gap-2 px-8 py-2.5 rounded bg-blue-700 text-white hover:bg-blue-800 transition-colors text-sm font-medium shadow-sm w-full sm:w-auto justify-center">
+      View Detailed Analysis
+    </a>
+    <button class="flex items-center gap-2 px-8 py-2.5 rounded bg-emerald-700 text-white hover:bg-emerald-800 transition-colors text-sm font-medium shadow-sm w-full sm:w-auto justify-center">
+      Submit to Teacher
+    </button>
+  </div>
+</main>

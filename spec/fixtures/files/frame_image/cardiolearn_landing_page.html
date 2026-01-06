@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CardioLearn - Educational ECG Platform</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              blue: '#2e74b5',
+              dark: '#1a1a1a',
+              red: '#b52b2b',
+              bg: '#f0f2f5',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Styles for Specific Layout Needs -->
+<style data-purpose="layout-tweaks">
+    /* Ensure the footer sticks to the bottom if content is short */
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+    }
+    
+    /* Specific styling for the ECG background to ensure it sits behind content correctly */
+    .ecg-background {
+      mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    }
+  </style>
+</head>
+<body class="bg-white text-brand-dark font-sans antialiased">
+<!-- BEGIN: Navbar -->
+<header class="w-full border-b border-gray-100 bg-white shadow-sm sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<!-- Logo Section -->
+<div class="flex items-center gap-2 cursor-pointer" data-purpose="branding">
+<!-- Logo Placeholder -->
+<svg class="w-8 h-8" fill="none" stroke="#1e4f8a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+<span class="text-xl font-bold text-brand-blue tracking-tight" style="color: #1e4f8a;">CardioLearn</span>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex space-x-8" data-purpose="main-navigation">
+<a class="text-gray-600 hover:text-brand-blue font-medium transition-colors" href="#">Home</a>
+<a class="text-gray-600 hover:text-brand-blue font-medium transition-colors" href="#">My Data</a>
+<a class="text-gray-600 hover:text-brand-blue font-medium transition-colors" href="#">Resources</a>
+</nav>
+<!-- User Account Section -->
+<div class="flex items-center gap-3" data-purpose="user-account">
+<span class="hidden sm:block text-sm font-medium text-gray-700">Student Account</span>
+<!-- User Icon Placeholder -->
+<button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-blue rounded-full">
+<svg class="w-10 h-10 p-1 rounded-full border border-gray-200 text-gray-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- END: Navbar -->
+<main>
+<!-- BEGIN: HeroSection -->
+<section class="relative pt-20 pb-16 overflow-hidden text-center" data-purpose="hero-content">
+<div class="max-w-4xl mx-auto px-4">
+<!-- Headlines -->
+<h1 class="text-5xl font-bold text-brand-dark mb-4">
+          Welcome to CardioLearn
+        </h1>
+<p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+          Your educational platform for ECG analysis and feedback.
+        </p>
+<!-- Interactive Area Wrapper -->
+<div class="relative py-12 flex justify-center items-center w-full" data-purpose="action-area"><img alt="ECG Background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT5M65tyiNIbI_hsTnAx0IABxiHAFywK3hphkL03crvzUl_oZOGippUjv63L73jYJCmsjGcQDPrsoiY2JSTk_5znSPnatqD1eG6WmSBy81UFruqt0rJXSmwDobFhxxc0I6p2x7nDtHG_t4bJSIa-FDUwfrGsiW4spYKcTLJtmhlnGTcEFRnjMPooEmWD1tUZawn6MkVBSXYZVKIKAiKQrsm3ec6GuKQF-q4c-fGYRZ7LTArHZOA_n6H-rBceB-N4xr0m4d1299WEez" style="position: absolute; top: 50%; left: 0; width: 100%; height: 200px; object-fit: cover; z-index: -1; opacity: 0.25; transform: translateY(-50%); pointer-events: none;"/>
+<!-- Background Image (Positioned behind button) -->
+<!-- Using absolute positioning to center it behind the CTA -->
+<!-- Main CTA and Tooltip Wrapper -->
+<div class="flex items-center gap-4 relative">
+<!-- Main CTA Button -->
+<button class="text-white font-semibold py-4 px-8 rounded-lg shadow-lg transform transition hover:-translate-y-0.5 focus:ring-4 focus:ring-blue-300" style="background-color: #2563eb;">
+              Start Experiment (ECG Upload Analysis)
+            </button>
+<!-- Info Tooltip Container -->
+<div class="relative group" data-purpose="tooltip-container">
+<!-- Info Icon Placeholder -->
+<svg class="w-6 h-6 text-gray-400 hover:text-gray-600 cursor-help" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+<!-- Tooltip Box -->
+<div style="position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 12px; width: 200px; background-color: white; padding: 12px; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid #e5e7eb; font-size: 0.875rem; color: #374151; z-index: 10;">
+<p style="font-weight: 600; margin-bottom: 4px;">Upload File Format Guide:</p>
+Lead II single column/row data needed for analysis.
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: NoticeBanner -->
+<section class="w-full bg-brand-bg py-4 border-y border-gray-200" data-purpose="disclaimer-banner" style="background-color: #f3f4f6;">
+<div class="max-w-7xl mx-auto px-4 text-center">
+<p class="font-medium flex items-center justify-center gap-2" style="color: #dc2626;">
+<!-- Warning Icon SVG (inline for cleaner look than placeholder) -->
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" fill-rule="evenodd"></path>
+</svg>
+          Mandatory Notice: Not a medical act / For educational use only.
+        </p>
+</div>
+</section>
+<!-- END: NoticeBanner -->
+<!-- BEGIN: GettingStarted -->
+<section class="py-16 bg-white" data-purpose="secondary-actions">
+<div class="max-w-4xl mx-auto px-4 text-center">
+<h2 class="text-2xl font-bold text-brand-dark mb-6">Getting Started</h2>
+<div class="flex justify-center">
+<button class="group flex items-center gap-3 px-6 py-3 border-2 border-brand-blue text-brand-blue font-semibold rounded-lg hover:bg-brand-blue hover:text-white transition-all duration-200">
+<!-- Download Icon Placeholder -->
+<svg class="w-5 h-5 text-gray-400 group-hover:text-white" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+            Download Sample File
+          </button>
+</div>
+</div>
+</section>
+<!-- END: GettingStarted -->
+</main>
+<!-- BEGIN: Footer -->
+<footer class="bg-white border-t border-gray-100 py-10 mt-auto">
+<div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12">
+<a class="text-sm text-gray-500 hover:text-brand-blue transition-colors" href="#">About Us</a>
+<a class="text-sm text-gray-500 hover:text-brand-blue transition-colors" href="#">Contact</a>
+<a class="text-sm text-gray-500 hover:text-brand-blue transition-colors" href="#">Terms of Service</a>
+<a class="text-sm text-gray-500 hover:text-brand-blue transition-colors" href="#">Privacy Policy</a>
+</div>
+<div class="text-center mt-6 text-xs text-gray-400">
+      © 2023 CardioLearn. All rights reserved.
+    </div>
+</footer>
+<!-- END: Footer -->
+</body></html>

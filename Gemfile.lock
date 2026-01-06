@@ -167,8 +167,7 @@ GEM
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
-    minitest (6.0.1)
-      prism (~> 1.5)
+    minitest (5.27.0)
     msgpack (1.8.0)
     net-imap (0.6.2)
       date
@@ -211,6 +210,9 @@ GEM
     raabro (1.4.0)
     racc (1.8.1)
     rack (3.2.4)
+    rack-cors (3.0.0)
+      logger
+      rack (>= 3.0.14)
     rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -343,6 +345,7 @@ GEM
     unicode-emoji (4.2.0)
     uri (1.1.1)
     useragent (0.16.11)
+    wavefile (1.1.2)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -371,8 +374,10 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
+  minitest (~> 5.22)
   propshaft
   puma (>= 5.0)
+  rack-cors
   rails (~> 8.1.1)
   rubocop-rails-omakase
   selenium-webdriver
@@ -384,6 +389,7 @@ DEPENDENCIES
   thruster
   turbo-rails
   tzinfo-data
+  wavefile (~> 1.1)
   web-console
 
 BUNDLED WITH

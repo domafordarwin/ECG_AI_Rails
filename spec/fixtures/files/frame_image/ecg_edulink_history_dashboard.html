@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ECG EduLink - My Records</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Custom Configuration for Tailwind -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              blue: '#1e3a8a', // Dark blue text
+              light: '#eff6ff', // Light blue background
+              accent: '#3b82f6', // Bright blue for highlights
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+<!-- BEGIN: Header -->
+<header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<!-- Logo Section -->
+<div class="flex items-center gap-2">
+<div class="text-brand-blue">
+<!-- Simple SVG Heart Pulse Icon -->
+<svg class="w-8 h-8" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z"></path>
+<path clip-rule="evenodd" d="M9.352 11.085a.75.75 0 00-.915-.36l-1.902.634-1.127-2.705a.75.75 0 00-1.393.578l1.63 3.913a.75.75 0 001.32-.387l.634-1.52 1.488-.496a.75.75 0 00.265-.157z" fill-rule="evenodd"></path>
+<!-- Overlaying a pulse line visually on top of the heart shape roughly -->
+<path class="opacity-80" d="M6 12h2l2-4 2 8 2-4h2" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" transform="translate(1, -3) scale(0.9)"></path>
+</svg>
+</div>
+<span class="text-xl font-bold text-slate-900 tracking-tight">ECG EduLink</span>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex space-x-8 h-full">
+<a class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent" href="#">Dashboard</a>
+<a class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent" href="#">Upload</a>
+<a aria-current="page" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-brand-blue border-b-4 border-brand-blue" href="#">My Records</a>
+<a class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent" href="#">Profile</a>
+</nav>
+<!-- User Profile -->
+<div class="flex items-center">
+<button class="bg-gray-200 rounded-full p-2 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-blue" type="button">
+<span class="sr-only">View profile</span>
+<svg class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" fill-rule="evenodd"></path>
+</svg>
+</button>
+</div>
+</div>
+</header>
+<!-- END: Header -->
+<!-- BEGIN: Main Content -->
+<main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Page Title -->
+<h1 class="text-3xl font-bold text-slate-900 mb-6">My Records (History)</h1>
+<!-- BEGIN: Dashboard Card Container -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+<div class="p-6 lg:p-8 flex flex-col lg:flex-row gap-8 lg:gap-12">
+<!-- BEGIN: Left Column (Timeline) -->
+<section class="lg:w-1/3 relative">
+<h2 class="text-lg font-bold text-slate-900 mb-6">Timeline of Uploaded Records</h2>
+<div class="flex flex-col space-y-4 relative"><div class="absolute left-[15px] top-6 bottom-6 w-[2px] bg-gray-300 z-0"></div>
+<!-- Timeline Item 1 (Active) -->
+<div class="relative pl-10" data-purpose="timeline-item-active">
+<!-- Dot Indicator -->
+<div class="absolute left-1 top-6 w-6 h-6 rounded-full bg-white border-2 border-blue-600 shadow-sm timeline-dot flex items-center justify-center z-10"><div class="w-3 h-3 bg-blue-600 rounded-full"></div></div>
+<!-- Card Content -->
+<div class="bg-blue-50 border border-blue-500 rounded-lg p-4 shadow-sm relative group cursor-pointer">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-slate-900 text-sm">Oct 26, 2023 - ECG Lab 3 (Post-Exercise)</h3>
+<p class="text-sm text-slate-700 mt-1">v2: Improvement</p>
+<p class="text-sm text-slate-600 mt-1">Status: Feedback Completed</p>
+</div>
+<!-- Chevron Up -->
+<svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.5 15.75l7.5-7.5 7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-10" data-purpose="timeline-item">
+<!-- Dot Indicator -->
+<div class="absolute left-1 top-6 w-6 h-6 rounded-full bg-white border-2 border-gray-300 timeline-dot"></div>
+<!-- Card Content -->
+<div class="bg-white border border-gray-200 rounded-lg p-4 hover:border-gray-300 transition-colors cursor-pointer">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-slate-900 text-sm">Oct 24, 2023 - ECG Lab 3 (Post-Exercise)</h3>
+<p class="text-sm text-slate-700 mt-1">v1: Re-measurement</p>
+<p class="text-sm text-slate-600 mt-1">Status: Feedback Received</p>
+</div>
+<!-- Chevron Down -->
+<svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.5 8.25l-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative pl-10" data-purpose="timeline-item">
+<!-- Dot Indicator -->
+<div class="absolute left-1 top-6 w-6 h-6 rounded-full bg-white border-2 border-gray-300 timeline-dot"></div>
+<!-- Card Content -->
+<div class="bg-white border border-gray-200 rounded-lg p-4 hover:border-gray-300 transition-colors cursor-pointer">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-slate-900 text-sm">Oct 15, 2023 - ECG Lab 2 (Resting)</h3>
+<p class="text-sm text-slate-700 mt-1">v1: Initial Upload</p>
+<p class="text-sm text-slate-600 mt-1">Status: Feedback Completed</p>
+</div>
+<!-- Chevron Down -->
+<svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.5 8.25l-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Left Column (Timeline) -->
+<!-- BEGIN: Right Column (Analysis) -->
+<section class="lg:w-2/3 flex flex-col h-full">
+<h2 class="text-lg font-bold text-slate-900 mb-6">Compare This Measurement vs. Last Measurement (v2 vs. v1)</h2>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+<!-- Metric Card 1: Heart Rate -->
+<div class="bg-white border border-gray-200 rounded-xl shadow-sm flex flex-col justify-between p-6">
+<h3 class="text-sm text-slate-600 font-medium mb-1">Heart Rate (BPM)</h3>
+<div class="flex items-end justify-between">
+<div>
+<div class="text-4xl font-bold text-slate-900">78</div>
+<div class="flex items-center mt-2 text-green-600 text-sm font-semibold">
+<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 10l7-7m0 0l7 7m-7-7v18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    6 BPM
+                  </div>
+</div>
+<div class="h-12 w-32"><img alt="Heart Rate Chart" class="h-full w-auto object-contain ml-auto max-w-[100px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa_clohYPve_F7WlmMW9I_XQv4Bi3xcNLnhxHp71MCq631CC3-FiudNzJwsgfVYSqZL1x91xDoprSBU6NZm9czQHU1HOfjVNIvoBgyq9Rv--f-b4PAt54aSiXPOQ2o6aJCNmFSgYtDLm9FdQVmW03TAe8w9A_XKN2VzV-Fb8Gmt82FHYN76BGeiWS6FTeHvVoqwtN6u-1eGwA86LTatHv_sqgU63MPwgXfGhoya3raejulED10N2lKWHgowBXJktd-DFK-BLhEWsc2"/></div>
+</div>
+</div>
+<!-- Metric Card 2: P-Wave Duration -->
+<div class="bg-white border border-gray-200 rounded-xl shadow-sm flex flex-col justify-between p-6">
+<h3 class="text-sm text-slate-600 font-medium mb-1">P-Wave Duration (ms)</h3>
+<div class="flex items-end justify-between">
+<div>
+<div class="text-4xl font-bold text-slate-900">92</div>
+<div class="flex items-center mt-2 text-red-600 text-sm font-semibold">
+<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    4 ms
+                  </div>
+</div>
+<div class="h-12 w-32 flex items-end justify-end space-x-1"><img alt="P-Wave Duration Chart" class="h-full w-auto object-contain ml-auto max-w-[100px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI6JUstVaBlecMatK-x9MnZ3aoASoslTUOu85jaVi1Yb4VYYBHBtY8Y6Q33a93Kux0GEBzFIEvM4UeYPKCdDYMj6PaHMhy5ODXY6LJuD0bGPHnJBWK7EPiBs1erqjWIPEN6AjfAb5IkiAyH0oJULzlK-snkGpDXQprXfg0OMV_ZUiZUDEds3-i2xERHSXn8pbVGl_mAPh2sEOlT0miy7cwzO7ApdRARaj1pkik69IXZ_UvBsT9IdyTlbFOojAzAtUZnP2-XRp1Ht7O"/></div>
+</div>
+</div>
+<!-- Metric Card 3: QRS Complex -->
+<div class="bg-white border border-gray-200 rounded-xl shadow-sm flex flex-col justify-between p-6">
+<h3 class="text-sm text-slate-600 font-medium mb-1">QRS Complex (ms)</h3>
+<div class="flex items-end justify-between">
+<div>
+<div class="text-4xl font-bold text-slate-900">88</div>
+<div class="flex items-center mt-2 text-slate-600 text-sm font-semibold">
+<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    No Change
+                  </div>
+</div>
+<div class="h-12 w-32"><img alt="QRS Complex Chart" class="h-full w-auto object-contain ml-auto max-w-[100px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDeFhB2_yp2OQjzu--jAXA2HILE49sK1vv5RggzFKICuTr0csjvohxrZmnZx8WI_bfX_gjLywDce2qi7NkSkVL89ThWvIav2Gq47vfdFgzJ8uTcm6Ir6nE3DGuRZf0LnRIfvPBl2X6_yBR4ZRnbr3DYWgx540dJepEflqcTTR5YmqKr5uG1gTTb4f88sGSW4wV_eLSDa4rZNplzcg-yAwq5ObrLNRZRkIi3fCZVBVPvYsVhYpMxba7NTPfh-eUrIS5RW1Cv5LCHsW7"/></div>
+</div>
+</div>
+<!-- Metric Card 4: QT Interval -->
+<div class="bg-white border border-gray-200 rounded-xl shadow-sm flex flex-col justify-between p-6">
+<h3 class="text-sm text-slate-600 font-medium mb-1">QT Interval (ms)</h3>
+<div class="flex items-end justify-between">
+<div>
+<div class="text-4xl font-bold text-slate-900">380</div>
+<div class="flex items-center mt-2 text-green-600 text-sm font-semibold">
+<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 10l7-7m0 0l7 7m-7-7v18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    10 ms
+                  </div>
+</div>
+<div class="h-12 w-32 flex items-end justify-end space-x-1"><img alt="QT Interval Chart" class="h-full w-auto object-contain ml-auto max-w-[100px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1f7jC_8qpnPDeUjyHxDfnU_GxuFq_8aUDBnFR0BgaOQvEmuFELLL87Cs2DGs_7buMDS38nIw_T1MxsDDtp9THb-ZR7n5bdFoNeUmUmFLAa5wNe64lrD1mnWgYKM1MYt13ubT5S_bRIvDJZ1Edp7ugFoln7DzM7wk4DkjWuIG2QbTSjOkWgxe8d4AmPRaFqnPkdyuDITPBu8uMd4eqsb0Da33g53I8HfXAY41ouQtzkWp782Zu2iG7__9QTz2W_4355JTzKkuBd_kc"/></div>
+</div>
+</div>
+</div>
+<!-- Feedback Status Section -->
+<div class="mt-auto">
+<h3 class="text-lg font-bold text-slate-900 mb-4">Submission Status &amp; Feedback Details</h3>
+<div class="flex flex-col sm:flex-row gap-6 mb-6">
+<!-- Status Item 1 -->
+<div class="flex items-start">
+<div class="flex-shrink-0">
+<svg class="h-6 w-6 text-blue-600" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" fill-rule="evenodd"></path></svg>
+</div>
+<div class="ml-3">
+<p class="text-sm font-bold text-slate-900">Teacher Confirmed:</p>
+<p class="text-sm text-slate-600">Yes (Prof. Davis, Oct 27)</p>
+</div>
+</div>
+<!-- Status Item 2 -->
+<div class="flex items-start">
+<div class="flex-shrink-0">
+<svg class="h-6 w-6 text-blue-600" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" fill-rule="evenodd"></path></svg>
+</div>
+<div class="ml-3">
+<p class="text-sm font-bold text-slate-900">Feedback Completed:</p>
+<p class="text-sm text-slate-600">Yes (Available)</p>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-[#eff6ff] hover:bg-blue-100 text-[#1e40af] font-bold py-3 px-4 rounded-lg border border-blue-200 shadow-sm transition-colors text-center" type="button">
+              View Full Feedback &amp; Analysis
+            </button>
+</div>
+</section>
+<!-- END: Right Column (Analysis) -->
+</div>
+</div>
+<!-- END: Dashboard Card Container -->
+</main>
+<!-- END: Main Content -->
+</body></html>
