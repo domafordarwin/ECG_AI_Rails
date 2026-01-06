@@ -78,4 +78,5 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start server for Railway deployment (PORT is provided by Railway)
 EXPOSE 3000
-CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
+# Use verbose mode for better logging
+CMD ["./bin/rails", "server", "-b", "0.0.0.0", "-e", "production"]
