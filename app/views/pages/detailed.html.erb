@@ -2,68 +2,90 @@
 
 <header class="fixed top-0 left-0 w-full bg-[#1e4c82] shadow-md z-50 h-16">
   <div class="container mx-auto px-4 h-full flex items-center justify-between">
+    <!-- Logo Section -->
     <div class="flex items-center cursor-pointer" onclick="window.location.href='/'">
       <svg class="w-8 h-8 text-white mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
       <span class="text-white text-xl font-bold tracking-tight">CardioEdu Analytics</span>
     </div>
+    <!-- Navigation Menu -->
     <nav class="hidden md:flex space-x-8 h-full items-center">
       <a class="text-blue-100 hover:text-white px-3 py-2 text-sm font-medium transition-colors" href="/">Dashboard</a>
       <a class="text-blue-100 hover:text-white px-3 py-2 text-sm font-medium transition-colors" href="/upload">Upload</a>
       <a class="text-white bg-blue-700 bg-opacity-50 px-3 py-2 text-sm font-medium rounded-md border-b-2 border-white" href="/detailed">Analysis</a>
     </nav>
+    <!-- User Profile -->
     <div class="flex items-center">
       <button class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
-        <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-700 font-bold text-sm border-2 border-blue-300">ST</div>
+        <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-700 font-bold text-sm border-2 border-blue-300">DR</div>
       </button>
     </div>
   </div>
 </header>
 
-<main class="pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-[1600px] mx-auto bg-gray-100 min-h-screen" data-controller="upload">
+<main class="pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-[1600px] mx-auto min-h-screen bg-[#f4f6f8]" data-controller="upload">
+  <!-- Page Header -->
   <div class="mb-6 flex justify-between items-end">
     <div>
       <h1 class="text-2xl font-bold text-gray-900">Detailed Analysis Screen</h1>
       <p class="text-sm text-gray-500 mt-1">Patient ID: #83920-A • Recording Date: <%= Time.current.strftime("%b %d, %Y") %></p>
     </div>
     <div class="flex gap-2">
-       <button data-action="click->upload#downloadPDF" class="px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50 transition-colors">Export PDF</button>
-       <button data-action="click->upload#downloadCSV" class="px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50 transition-colors">Export CSV</button>
+       <button data-action="click->upload#downloadPDF" class="px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm">Export PDF</button>
+       <button data-action="click->upload#downloadCSV" class="px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm">Export CSV</button>
     </div>
   </div>
 
+  <!-- Grid Layout: Left (70%) & Right (30%) -->
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-    <!-- Left Column: Waveform -->
+    <!-- Left Column: Waveform Viewer -->
     <section class="lg:col-span-8 flex flex-col gap-6">
-      <article class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
+      <article class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100 h-full">
+        <!-- Card Header -->
         <div class="px-6 py-4 border-b border-gray-100 flex flex-wrap justify-between items-center bg-gray-50">
           <h2 class="text-lg font-semibold text-gray-800">Waveform Viewer</h2>
+          <!-- Toolbar -->
           <div class="flex items-center gap-4 mt-2 sm:mt-0">
             <div class="flex bg-white rounded-md shadow-sm border border-gray-200">
-              <button data-action="click->upload#zoomIn" class="p-2 hover:bg-gray-50 border-r border-gray-200 text-gray-600" title="Zoom In"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
-              <button data-action="click->upload#zoomOut" class="p-2 hover:bg-gray-50 border-r border-gray-200 text-gray-600" title="Zoom Out"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
-              <button class="p-2 bg-blue-100 text-blue-800 border border-blue-200 font-medium text-xs px-3">Scan View</button>
+              <button data-action="click->upload#zoomIn" class="p-2 hover:bg-gray-50 border-r border-gray-200 text-gray-600" title="Zoom In">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+              </button>
+              <button data-action="click->upload#zoomOut" class="p-2 hover:bg-gray-50 border-r border-gray-200 text-gray-600" title="Zoom Out">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+              </button>
+              <button class="p-2 hover:bg-gray-50 border-r border-gray-200 text-gray-600" title="Pan">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+              </button>
+              <button class="p-2 bg-blue-100 text-blue-800 border-l border-blue-200 font-medium text-xs px-3 hover:bg-blue-200 transition-colors">Select Section</button>
             </div>
-            <div class="hidden xl:flex items-center gap-3 text-[10px] font-bold text-gray-600 border-l pl-4 border-gray-200 ml-2">
-              <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-green-500"></span> P-start</div>
-              <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-red-500"></span> Q</div>
-              <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span> R</div>
-              <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span> S</div>
-              <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span> T-end</div>
+            <!-- Legend Indicators -->
+            <div class="hidden xl:flex items-center gap-3 text-xs text-gray-600 border-l pl-4 border-gray-200 ml-2">
+              <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span> P-start</div>
+              <div class="flex items-center gap-1"><span class="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-b-[8px] border-b-red-500 inline-block"></span> Q</div>
+              <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 bg-blue-500 transform rotate-45 inline-block"></span> R</div>
+              <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 bg-orange-500 inline-block"></span> S</div>
+              <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block"></span> T-end</div>
             </div>
           </div>
         </div>
+        <!-- Content Area -->
         <div class="p-6">
-           <div class="flex items-center justify-between mb-2">
-            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Master Navigation</span>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Full Lead II Recording</span>
             <span class="text-xs font-black text-blue-700 px-2 py-0.5" data-upload-target="sliderLabel">0.000s ~ 5.000s</span>
           </div>
+          <!-- Main Chart -->
           <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden relative bg-slate-50 h-[300px]">
              <canvas id="ecgChart"></canvas>
+             <!-- Selection Box Overlay from Mockup -->
+             <div style="position: absolute; top: 10%; left: 40%; width: 20%; height: 80%; background-color: rgba(255, 0, 0, 0.1); border: 2px solid rgba(255, 0, 0, 0.3); pointer-events: none;"></div>
           </div>
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Detailed View (Analysis Section)</span>
+          <!-- Detail Chart -->
           <div class="border border-gray-200 rounded-lg overflow-hidden relative bg-slate-50 h-[250px]">
              <canvas id="detailChart"></canvas>
           </div>
-          <div class="pt-4">
+          <!-- Navigation Slider -->
+          <div class="pt-6">
              <input type="range" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
                     data-upload-target="slider" data-action="input->upload#updateChartWindow" min="0" max="100" step="1" value="0">
           </div>
@@ -73,54 +95,77 @@
 
     <!-- Right Column: Interpretation & Quality -->
     <section class="lg:col-span-4 flex flex-col gap-6">
-      <article class="bg-white rounded-lg shadow-sm border border-gray-100">
+      <!-- ECG Interpretation Diagram Card -->
+      <article class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <div class="px-5 py-4 border-b border-gray-100 bg-gray-50">
           <h2 class="text-lg font-semibold text-gray-800">ECG Interpretation Diagram</h2>
         </div>
         <div class="p-5 space-y-5">
-          <div class="flex justify-between gap-2">
-            <div class="w-[48%] border border-gray-100 p-1 rounded">
-              <img src="https://cdn-icons-png.flaticon.com/512/822/822143.png" class="max-w-full h-auto" alt="Heart Diagram">
+          <!-- Diagram Images -->
+          <div class="flex justify-between items-stretch gap-2">
+            <div class="w-[48%] bg-white rounded border border-gray-100 p-1 flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaUuTc_NYVaKXJZ6lL3k0rewGJfIOxPiKHgdD_fCZY-WOlZZXxH8101mg4peJAzAMmiiDSBo2FVp5VbjffepcHDE258uqF4BpUnpGbVrL1I17NFj_ZRGCepB_YYH8I8h8soYoOg3egg2Tz2ooIP7gmTNTVJbKk9UWaJb1UjXQUIwQZnmUVMtvDAwa_nbvVX-QZIkCM3e8skA80Fj4ixMl86k5GkjqjAnnKa_eE7NhmAIDZF8UAf6fTVFdjri4gnOflbvgT9BpRZOBn" class="max-w-full h-auto object-contain" alt="Heart Diagram">
             </div>
-            <div class="w-[48%] border border-gray-100 p-1 rounded">
-              <img src="https://cdn-icons-png.flaticon.com/512/3209/3209106.png" class="max-w-full h-auto" alt="ECG Cycle">
+            <div class="w-[48%] bg-white rounded border border-gray-100 p-1 flex items-center justify-center">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfXpskVW1_GsBrigttKoKgH7C36rEsBo3IINUACmdvyOBjr7pi9txy49nVJSQQaVKf042rLT7G2c3OdjkbqRoYBr2nFRniLN5DSUxrNJv28u6WNb3wcIqHnBsUVHpBV6pyn-doM_yQHWqIeyvzzQiweCbSDRTTvin7HeUhi_8yjE6PhSQckJ9biHfFRC7OffmHcez-EeOT7elpJSyJk52Rr4vGvan_savZvy8FuhBc_sdqz8WuSGUyIh9uPJxFCAktdvl7_X5Lwrdt" class="max-w-full h-auto object-contain" alt="ECG Cycle">
             </div>
           </div>
-          <div class="grid grid-cols-2 gap-4">
-            <div class="rounded-lg p-3 border border-blue-100 bg-blue-50">
-              <div class="text-xs font-bold text-gray-500 uppercase">PQ Interval</div>
-              <div class="text-lg font-black text-gray-800" data-type="pq-interval">120ms</div>
-              <div class="text-[10px] text-green-600 font-bold uppercase">● Normal</div>
+          <!-- Interval Metrics with Visuals -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="rounded-lg p-3 border border-blue-100 flex flex-col justify-between bg-[#F0F6FC]">
+              <div class="mb-2">
+                <div class="text-sm font-bold text-gray-800">PQ Interval</div>
+                <div class="text-xs font-medium text-green-600 mt-1" data-type="pq-interval">120ms (Normal)</div>
+              </div>
+              <div class="bg-white rounded p-1 border border-blue-200/50 flex justify-center items-center">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuARY83s9uIifVhdfAoJVnHKEOUt3hUJLxUbIS7EWlyCGSVr9Bria2DfkjZMJ3AXBGj7FPzv23JTyA2Za9MXYJYJO5-Ybk20l2NFkIzYqaDPMUZDa_zRe5EHgBg21yOFERxmxj8ngyDLncWw1KJKjNPVVCRlTfbk7apTMB7CFt0j38pywTdMxhQ3rf3QDPBbpZq822IYd1AieNnO93lLLZ_80_gJKPW4x7Hh5V2TnkLmN-gPjOIrdoHB1xQkjCkaXRzOOBqkXXWLUaBD" class="w-full h-12 object-contain" alt="PQ Visual">
+              </div>
             </div>
-            <div class="rounded-lg p-3 border border-blue-100 bg-blue-50">
-              <div class="text-xs font-bold text-gray-500 uppercase">QT Interval</div>
-              <div class="text-lg font-black text-gray-800" data-type="qt-interval">380ms</div>
-              <div class="text-[10px] text-green-600 font-bold uppercase">● Normal</div>
+            <div class="rounded-lg p-3 border border-blue-100 flex flex-col justify-between bg-[#F0F6FC]">
+              <div class="mb-2">
+                <div class="text-sm font-bold text-gray-800">QT Interval</div>
+                <div class="text-xs font-medium text-green-600 mt-1" data-type="qt-interval">380ms (Normal)</div>
+              </div>
+              <div class="bg-white rounded p-1 border border-blue-200/50 flex justify-center items-center">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQEu0_xM3kfmPojXx8z8TfONXOC-ztA8GcpzV5IPuUcgZ8wg3dqx4_4Mrw8k3xeDMlZVsG5yDylKiMxzEbNwaiaRSNdL5H-Hbbus1aOG6sZ2RFPJvlatoKi8-n5_62DXda6YBsOUGoVjo4Y59YdJTNpk08n1vKUFHeS4C1FA2Ewtxw797AXNXzkrMAUhXGWx2VRLFQBpelgBgugBVDbJ_rIxOoqhbCKc4gK5t_cbRgrVcsu1nla70-VdErQa6-H3KzfB3QWgf3ZjGF" class="w-full h-12 object-contain" alt="QT Visual">
+              </div>
             </div>
           </div>
         </div>
       </article>
 
-      <article class="bg-white rounded-lg shadow-sm border border-gray-100">
+      <!-- Quality/Noise Panel Card -->
+      <article class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
         <div class="px-5 py-4 border-b border-gray-100 bg-gray-50">
           <h2 class="text-lg font-semibold text-gray-800">Quality/Noise Panel</h2>
         </div>
         <div class="p-5">
-          <ul class="space-y-4 mb-6 text-sm">
-            <li class="flex justify-between items-center">
+          <ul class="space-y-4 mb-6">
+            <li class="flex justify-between items-center text-sm">
               <span class="text-gray-600">Baseline Wander</span>
-              <span class="px-2 py-0.5 bg-orange-100 text-orange-700 rounded text-xs font-bold">Suspected</span>
+              <span class="px-2 py-1 rounded text-xs font-semibold border border-orange-200 bg-[#FFEDD5] text-[#9A3412]">Suspected</span>
             </li>
-            <li class="flex justify-between items-center">
+            <li class="flex justify-between items-center text-sm">
               <span class="text-gray-600">Powerline (50Hz)</span>
-              <span class="px-2 py-0.5 bg-orange-100 text-orange-700 rounded text-xs font-bold">Suspected</span>
+              <span class="px-2 py-1 rounded text-xs font-semibold border border-orange-200 bg-[#FFEDD5] text-[#9A3412]">Suspected</span>
             </li>
-            <li class="flex justify-between items-center">
+            <li class="flex justify-between items-center text-sm">
               <span class="text-gray-600">Electromyogram</span>
-              <span class="px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs font-bold">None</span>
+              <span class="px-2 py-1 rounded text-xs font-semibold border border-green-200 bg-[#DCFCE7] text-[#166534]">None</span>
             </li>
           </ul>
           <div class="border-t border-gray-100 pt-4">
+            <h3 class="text-sm font-bold text-gray-800 mb-2 flex items-center gap-2">
+              <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+              Re-measure Tips
+            </h3>
+            <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+              <li>Check electrode adhesion</li>
+              <li>Minimize patient movement</li>
+              <li>Ensure proper grounding</li>
+            </ul>
+          </div>
+          <div class="mt-6">
             <button data-action="click->upload#submitToTeacher" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold transition-all shadow-md active:scale-95">Send Analysis to Teacher</button>
           </div>
         </div>
