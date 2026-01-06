@@ -46,17 +46,9 @@ origins ENV.fetch('CORS_ORIGINS', 'http://localhost:3000').split(',')
 
 Railway에서는 PostgreSQL 사용을 강력히 권장합니다.
 
-### 1. Gemfile에 pg gem 추가
-```ruby
-gem "pg", "~> 1.5"
-```
+**✅ pg gem은 이미 Gemfile에 추가되어 있습니다!**
 
-### 2. bundle install 실행
-```bash
-bundle install
-```
-
-### 3. Railway PostgreSQL 플러그인 추가
+### Railway PostgreSQL 플러그인 추가
 Railway 대시보드에서:
 - "New" → "Database" → "Add PostgreSQL"
 - 자동으로 `DATABASE_URL` 환경 변수가 설정됩니다
