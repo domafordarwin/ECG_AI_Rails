@@ -49,6 +49,10 @@ module Api
           duration: wav_data[:duration],
           data_points: filtered_data[:data_points],
           peaks: detection_result[:peaks],
+          p_waves: detection_result[:p_waves],
+          q_waves: detection_result[:q_waves],
+          s_waves: detection_result[:s_waves],
+          t_waves: detection_result[:t_waves],
           anomalies: format_anomalies(detection_result[:anomalies]),
           processing_time_ms: processing_time_ms
         }
