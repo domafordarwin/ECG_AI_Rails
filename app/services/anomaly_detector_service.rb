@@ -7,9 +7,12 @@ class AnomalyDetectorService
       sampling_rate = filtered_data[:sampling_rate]
       return { anomalies: [], peaks: [], p_waves: [], q_waves: [], s_waves: [], t_waves: [] } if data.empty?
 
-      # Find R Peaks
-      threshold = data.max.to_f * 0.6
-      r_peaks = find_peaks(data, threshold)
+      # Find R Peaks with improved threshold
+      mean_val = data.sum.to_f / data.length
+      max_val = data.max.to_f
+      # Use 70% of max for better peak detection
+      threshold = mean_val + (max_val - mean_val) * 0.7
+      r_peaks = find_peaks(data, threshold, sampling_rate)
       return { anomalies: [], peaks: r_peaks, p_waves: [], q_waves: [], s_waves: [], t_waves: [] } if r_peaks.empty?
 
       # Detect P, Q, S, T waves relative to R peaks
@@ -50,11 +53,24 @@ class AnomalyDetectorService
 
     private
 
-    def find_peaks(data, threshold)
-      data.each_index.select do |idx|
-        next false if idx.zero? || idx == data.length - 1
-        data[idx] > threshold && data[idx] > data[idx - 1] && data[idx] > data[idx + 1]
+    def find_peaks(data, threshold, sampling_rate)
+      peaks = []
+      # Minimum distance between peaks (in samples) - prevents duplicate detections
+      # For 75 bpm, R-R interval is ~0.8s, use 0.4s as minimum
+      min_distance = (0.4 * sampling_rate).to_i
+      last_peak_idx = -min_distance
+
+      data.each_index do |idx|
+        next if idx.zero? || idx == data.length - 1
+        next if (idx - last_peak_idx) < min_distance
+
+        if data[idx] > threshold && data[idx] > data[idx - 1] && data[idx] > data[idx + 1]
+          peaks << idx
+          last_peak_idx = idx
+        end
       end
+
+      peaks
     end
 
     def detect_pqst_waves(data, r_peaks, sampling_rate)
@@ -104,12 +120,34 @@ class AnomalyDetectorService
 
     def find_min_index(data, start_idx, end_idx)
       return nil if start_idx >= end_idx
-      data[start_idx...end_idx].each_with_index.min[1] + start_idx
+
+      min_val = data[start_idx]
+      min_idx = start_idx
+
+      (start_idx + 1...end_idx).each do |i|
+        if data[i] < min_val
+          min_val = data[i]
+          min_idx = i
+        end
+      end
+
+      min_idx
     end
 
     def find_max_index(data, start_idx, end_idx)
       return nil if start_idx >= end_idx
-      data[start_idx...end_idx].each_with_index.max[1] + start_idx
+
+      max_val = data[start_idx]
+      max_idx = start_idx
+
+      (start_idx + 1...end_idx).each do |i|
+        if data[i] > max_val
+          max_val = data[i]
+          max_idx = i
+        end
+      end
+
+      max_idx
     end
   end
 end
