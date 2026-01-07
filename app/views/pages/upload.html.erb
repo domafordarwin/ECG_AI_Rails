@@ -148,8 +148,15 @@
         </div>
         <div class="mb-6">
           <label class="block text-sm font-medium text-slate-900 mb-1.5">Sampling Rate (Hz)</label>
-          <input class="w-full border-gray-300 rounded-md text-sm py-2 px-3 text-slate-900" type="text" value="500"/>
-          <p class="text-xs text-slate-500 mt-1">Auto-estimated from file. Adjust if necessary.</p>
+          <input id="sampling-rate-input" class="w-full border-gray-300 rounded-md text-sm py-2 px-3 text-slate-900 font-mono" type="text" value="500" readonly/>
+          <p class="text-xs text-slate-500 mt-1">
+            <span class="inline-flex items-center">
+              <svg class="w-3 h-3 mr-1 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Auto-detected from WAV file header
+            </span>
+          </p>
         </div>
         <div class="mt-auto space-y-3">
           <button class="w-full bg-[#2563EB] hover:bg-blue-700 text-white font-medium py-3 rounded-lg flex items-center justify-center space-x-2 transition-all shadow-sm active:scale-95"

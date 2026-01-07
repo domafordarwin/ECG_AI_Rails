@@ -57,6 +57,23 @@ export default class extends Controller {
   }
 
   async createPreview(file) {
+    // Read WAV file header to extract sampling rate
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      const arrayBuffer = e.target.result
+      const view = new DataView(arrayBuffer)
+
+      // WAV file format: Sample rate is at bytes 24-27 (little-endian)
+      if (arrayBuffer.byteLength >= 28) {
+        const sampleRate = view.getUint32(24, true)
+        const samplingRateInput = document.getElementById('sampling-rate-input')
+        if (samplingRateInput && sampleRate > 0) {
+          samplingRateInput.value = sampleRate
+        }
+      }
+    }
+    reader.readAsArrayBuffer(file.slice(0, 44)) // Read only WAV header (44 bytes)
+
     const ctx = document.getElementById("preview-chart")
     if (ctx) {
       ctx.classList.remove("hidden")
