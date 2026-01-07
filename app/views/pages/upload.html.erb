@@ -121,8 +121,8 @@
             <svg class="w-16 h-16 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
           </div>
           <p class="text-sm font-semibold text-slate-700 mb-2">Drag and drop your ECG file here</p>
-          <p class="text-xs text-slate-500 text-center">Supported formats: WAV. (Single lead only)</p>
-          <input type="file" id="file-input" class="hidden" data-action="change->upload#handleFile" data-upload-target="input" accept="audio/wav,audio/x-wav,.wav">
+          <p class="text-xs text-slate-500 text-center">Supported formats: WAV, MP3, M4A, AAC, OGG, FLAC (Single lead only)</p>
+          <input type="file" id="file-input" class="hidden" data-action="change->upload#handleFile" data-upload-target="input" accept="audio/*,.wav,.mp3,.m4a,.aac,.ogg,.flac">
         </div>
         
         <div id="file-info" class="hidden bg-green-50 border border-green-100 rounded-lg p-3 flex items-center justify-between mb-2">
@@ -130,7 +130,7 @@
             <svg class="w-6 h-6 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             <div class="min-w-0">
               <p class="text-sm font-medium text-slate-900 truncate" data-upload-target="fileName"></p>
-              <p class="text-xs text-green-600 font-medium truncate">Validated (WAV format detected)</p>
+              <p class="text-xs text-green-600 font-medium truncate">Validated (Audio format detected)</p>
             </div>
           </div>
           <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>

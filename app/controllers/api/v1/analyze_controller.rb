@@ -18,11 +18,19 @@ module Api
           return render json: { success: false, error: "파일 크기는 50MB 이하여야 합니다." }, status: :bad_request
         end
 
-        unless uploaded_file.content_type.to_s.match?(/audio\/(wav|x-wav)/) || uploaded_file.original_filename.to_s.end_with?('.wav')
-          return render json: { success: false, error: "WAV 파일만 허용됩니다." }, status: :bad_request
+        # Check if file format is supported
+        unless AudioConverterService.supported_format?(uploaded_file.original_filename)
+          return render json: { success: false, error: "지원하지 않는 파일 형식입니다. WAV, MP3, M4A, AAC, OGG, FLAC 파일을 업로드해주세요." }, status: :bad_request
         end
 
-        wav_data = WavParserService.parse(uploaded_file.tempfile)
+        # Convert to WAV if not already WAV
+        file_to_parse = if uploaded_file.original_filename.to_s.downcase.end_with?('.wav')
+          uploaded_file.tempfile
+        else
+          AudioConverterService.to_wav(uploaded_file.tempfile)
+        end
+
+        wav_data = WavParserService.parse(file_to_parse)
         filtered_data, detection_result = process_signal(wav_data)
 
         processing_time_ms = ((Time.current - start_time) * 1000).to_i

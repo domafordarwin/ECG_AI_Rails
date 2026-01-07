@@ -20,6 +20,7 @@ gem "jbuilder"
 # Backend signal processing stack
 gem "wavefile", "~> 1.1"
 gem "rack-cors"
+gem "streamio-ffmpeg", "~> 3.0"  # For MP3 to WAV conversion
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
