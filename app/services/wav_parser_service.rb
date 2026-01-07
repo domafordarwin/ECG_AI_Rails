@@ -3,7 +3,12 @@
 require "wavefile"
 
 class WavParserService
-  ALLOWED_SAMPLE_RATES = [10_000, 5_000].freeze
+  # Support common ECG and audio sampling rates
+  # ECG: 500-10000 Hz, Mobile audio: 8000-48000 Hz
+  ALLOWED_SAMPLE_RATES = [
+    500, 1_000, 2_000, 5_000, 10_000,        # ECG devices
+    8_000, 11_025, 16_000, 22_050, 44_100, 48_000  # Audio/mobile recordings
+  ].freeze
 
   class << self
     def parse(file_path)
