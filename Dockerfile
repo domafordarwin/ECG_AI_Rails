@@ -73,10 +73,8 @@ USER 1000:1000
 COPY --chown=rails:rails --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --chown=rails:rails --from=build /rails /rails
 
-# Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
-
 # Start server for Railway deployment (PORT is provided by Railway)
 EXPOSE 3000
-# Use verbose mode for better logging
-CMD ["./bin/rails", "server", "-b", "0.0.0.0", "-e", "production"]
+
+# Simplified startup without ENTRYPOINT for debugging
+CMD ["sh", "-c", "echo 'Container started!' && echo 'PORT='$PORT && echo 'RAILS_ENV='$RAILS_ENV && bin/rails db:prepare && bin/rails server -b 0.0.0.0 -p ${PORT:-3000}"]
