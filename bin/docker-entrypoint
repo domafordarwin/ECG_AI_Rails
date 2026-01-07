@@ -5,6 +5,9 @@ echo "Arguments: ${@}"
 echo "PORT: ${PORT}"
 echo "RAILS_ENV: ${RAILS_ENV}"
 echo "DATABASE_URL: ${DATABASE_URL:0:30}..." # Only show first 30 chars for security
+echo "RAILS_MASTER_KEY exists: $([ -n "$RAILS_MASTER_KEY" ] && echo 'YES' || echo 'NO')"
+echo "Ruby version: $(ruby -v)"
+echo "Rails version: $(bundle exec rails -v)"
 
 # If running the rails server then create or migrate existing database
 if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
