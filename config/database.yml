@@ -26,19 +26,19 @@ development:
   # To create additional roles in PostgreSQL see `$ createuser --help`.
   # When left blank, PostgreSQL will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: rails
+  username: postgres
 
   # The password associated with the PostgreSQL role (username).
-  #password:
+  password: postgres
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
-  #host: localhost
+  host: localhost
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
-  #port: 5432
+  port: 5432
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -46,21 +46,25 @@ development:
 test:
   <<: *default
   database: rails_test
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
 
 # Production configuration uses DATABASE_URL environment variable
 production:
   primary:
     <<: *default
-    url: <%= ENV.fetch('DATABASE_URL') %>
+    url: <%= ENV['DATABASE_URL'] %>
   cache:
     <<: *default
-    url: <%= ENV.fetch('DATABASE_URL') %>
+    url: <%= ENV['DATABASE_URL'] %>
     migrations_paths: db/cache_migrate
   queue:
     <<: *default
-    url: <%= ENV.fetch('DATABASE_URL') %>
+    url: <%= ENV['DATABASE_URL'] %>
     migrations_paths: db/queue_migrate
   cable:
     <<: *default
-    url: <%= ENV.fetch('DATABASE_URL') %>
+    url: <%= ENV['DATABASE_URL'] %>
     migrations_paths: db/cable_migrate
