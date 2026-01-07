@@ -18,7 +18,7 @@ module Api
           return render json: { success: false, error: "파일 크기는 50MB 이하여야 합니다." }, status: :bad_request
         end
 
-        unless uploaded_file.content_type == "audio/wav"
+        unless uploaded_file.content_type.to_s.match?(/audio\/(wav|x-wav)/) || uploaded_file.original_filename.to_s.end_with?('.wav')
           return render json: { success: false, error: "WAV 파일만 허용됩니다." }, status: :bad_request
         end
 
