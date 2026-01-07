@@ -122,7 +122,7 @@
           </div>
           <p class="text-sm font-semibold text-slate-700 mb-2">Drag and drop your ECG file here</p>
           <p class="text-xs text-slate-500 text-center">Supported formats: WAV. (Single lead only)</p>
-          <input type="file" id="file-input" class="hidden" data-action="change->upload#handleFile" data-upload-target="input" accept=".wav">
+          <input type="file" id="file-input" class="hidden" data-action="change->upload#handleFile" data-upload-target="input" accept="audio/wav,audio/x-wav,.wav">
         </div>
         
         <div id="file-info" class="hidden bg-green-50 border border-green-100 rounded-lg p-3 flex items-center justify-between mb-2">
